@@ -1,0 +1,23 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.title {
+  font-size: 1.5em;
+  margin-bottom: 8px;
+}
+.price {
+  color: #888;
+  margin-bottom: 16px;
+}
+.ingredients {
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.category {
+  font-weight: bold;
+}
