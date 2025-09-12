@@ -1,6 +1,6 @@
 import styles from "./Dish.module.css";
 export default function Dish({ rett }) {
-//   const imageUrl = `https://source.unsplash.com/featured/300x200/?${rett.tittel}`;
+  //   const imageUrl = `https://source.unsplash.com/featured/300x200/?${rett.tittel}` This is broken, even without language stuff;
   return (
     <div className={styles.card}>
       <h2 className={styles.title}>{rett.tittel}</h2>
