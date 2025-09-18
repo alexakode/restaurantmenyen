@@ -1,6 +1,14 @@
 import styles from "./Dish.module.css";
+import { getDominantHue } from "../utils/getDominantHue";
+import { useEffect, useState } from "react";
 export default function Dish({ rett }) {
   //   const imageUrl = `https://source.unsplash.com/featured/300x200/?${rett.tittel}` This is broken, even without language stuff; Using manual vectors instead
+  const [hue, setHue] = useState(0);
+  useEffect(() => {
+    getDominantHue(`/icons/${slugify(rett.tittel)}.svg`).then(setHue);
+  }, [rett.tittel]);
+  //   console.log("Dominant hue for", rett.tittel, "is", hue);
+  // Simple slugify function for generating icon paths
   const slugify = (str) =>
     str
       .normalize("NFD")
@@ -13,7 +21,10 @@ export default function Dish({ rett }) {
       .replace(/[^\w-]+/g, "");
   const iconPath = `/icons/${slugify(rett.tittel)}.svg`;
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      style={{ borderColor: `hsl(${hue}, 70%, 50%)` }}
+    >
       <img
         src={`${import.meta.env.BASE_URL}icons/${slugify(rett.tittel)}.svg`}
         alt={rett.tittel}
