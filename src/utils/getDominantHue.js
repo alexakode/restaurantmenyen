@@ -1,5 +1,8 @@
 export async function getDominantHue(svgPath) {
-  const svgDoc = await getSvgDocument(svgPath);
+  const res = await fetch(svgPath);
+  const svgText = await res.text();
+  const parser = new DOMParser();
+  const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
   const paths = svgDoc.querySelectorAll("path[fill]");
   let dominantHue = 0;
   let maxWeight = 0;

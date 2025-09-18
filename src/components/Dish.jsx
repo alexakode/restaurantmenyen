@@ -3,11 +3,6 @@ import { getDominantHue } from "../utils/getDominantHue";
 import { useEffect, useState } from "react";
 export default function Dish({ rett }) {
   //   const imageUrl = `https://source.unsplash.com/featured/300x200/?${rett.tittel}` This is broken, even without language stuff; Using manual vectors instead
-  const [hue, setHue] = useState(0);
-  useEffect(() => {
-    getDominantHue(`/icons/${slugify(rett.tittel)}.svg`).then(setHue);
-  }, [rett.tittel]);
-  //   console.log("Dominant hue for", rett.tittel, "is", hue);
   // Simple slugify function for generating icon paths
   const slugify = (str) =>
     str
@@ -19,12 +14,21 @@ export default function Dish({ rett }) {
       .replace(/å/g, "a")
       .replace(/\s+/g, "-")
       .replace(/[^\w-]+/g, "");
+  const [hue, setHue] = useState(0);
+  useEffect(() => {
+    getDominantHue(`/icons/${slugify(rett.tittel)}.svg`)
+      .then((h) => {
+        console.log("Hue fra svg for", rett.tittel, "er", h);
+        setHue(h);
+      })
+      .catch((err) => {
+        console.error("Error fetching dominant hue for", rett.tittel, err);
+      });
+  }, [rett.tittel]);
+  //   console.log("Dominant hue for", rett.tittel, "is", hue);
   const iconPath = `/icons/${slugify(rett.tittel)}.svg`;
   return (
-    <div
-      className={styles.card}
-      style={{ borderColor: `hsl(${hue}, 70%, 50%)` }}
-    >
+    <div className={styles.card} style={{ "--hue": hue }}>
       <img
         src={`${import.meta.env.BASE_URL}icons/${slugify(rett.tittel)}.svg`}
         alt={rett.tittel}

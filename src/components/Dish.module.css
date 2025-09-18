@@ -1,5 +1,6 @@
 .card {
-  border: 1px solid #ccc;
+  border: 2px solid oklch(70% 0.15 var(--hue) deg);
+  background-color: oklch(60% 0.15 var(--hue) deg);
   border-radius: 8px;
   padding: 16px;
   margin: 16px;
