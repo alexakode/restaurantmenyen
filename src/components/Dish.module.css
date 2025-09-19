@@ -1,0 +1,24 @@
+.card {
+  border: 2px solid oklch(70% 0.15 var(--hue) * 1deg);
+  background-color: oklch(60% 0.15 var(--hue) * 1deg);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  max-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.title {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.price {
+  color: #888;
+  margin-bottom: 1em;
+}
+.ingredients {
+  font-style: italic;
+  margin-bottom: 0.5em;
+}
+.category {
+  font-weight: bold;
+}
